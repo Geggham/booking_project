@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es6",  // Указываем, что проект использует ES6 и выше
+    "lib": ["es6", "dom"],
+    "module": "esnext",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
