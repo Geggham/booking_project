@@ -1,29 +1,39 @@
-# booking
+# Booking Project — страница бронирований ресторана
 
-This template should help get you started developing with Vue 3 in Vite.
+Это тестовое задание для **Ark Studio** — реализована страница просмотра бронирований ресторана с помощью **Vue 3** и **TypeScript**.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Функциональность
 
-## Customize configuration
+- Просмотр доступных дат бронирования и переключение между ними  
+- Фильтрация столов по зонам (например: 1 этаж, 2 этаж, Банкетный зал)  
+- Корректное отображение событий (бронирования, заказы, банкеты) в сетке по времени  
+- Поддержка временной зоны ресторана, а не локальной  
+- Offset отображения для перекрывающихся событий  
+- Фиксированные заголовки таблицы: зоны слева и время сверху при прокрутке  
+- Эффект наведения на событие  
+- Возможность управления масштабом таблицы (горизонтально +16 px, вертикально +4 px)  
+- Работоспособность и производительность на мобильных устройствах и десктопе
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+---
 
-## Project Setup
+## Ссылки
 
-```sh
+- **Демо**: [https://booking-project-seven.vercel.app/](https://booking-project-seven.vercel.app/)  
+- **Исходный код**: [https://github.com/Geggham/booking_project](https://github.com/Geggham/booking_project)
+
+---
+
+## Установка и запуск
+
+### Установка зависимостей
+
+```bash
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+Запуск в режиме разработки
 npm run dev
-```
 
-### Compile and Minify for Production
-
-```sh
+Сборка в продакшн
 npm run build
-```
