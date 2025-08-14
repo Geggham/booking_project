@@ -128,14 +128,18 @@ export default defineComponent({
 
     const selectZone = (zone: string) => {
       if (selectedZones.value.includes(zone)) {
-        selectedZones.value = selectedZones.value.filter((z) => z !== zone);
+        selectedZones.value = selectedZones.value.filter(
+          (z: string) => z !== zone
+        );
       } else {
         selectedZones.value.push(zone);
       }
     };
 
     const filteredTables = computed(() => {
-      return tables.value.filter((table: Table) => selectedZones.value.includes(table.zone));
+      return tables.value.filter((table: Table) =>
+        selectedZones.value.includes(table.zone)
+      );
     });
 
     const formatDate = (date: string) => {

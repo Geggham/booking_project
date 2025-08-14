@@ -89,11 +89,12 @@ const fullInfo = computed(() => {
   background-color: rgba(255, 112, 67, 0.16);
   border-radius: 8px;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 8px;
   position: absolute;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   user-select: none;
+  width: 100%;
 }
 
 .reservation-card:hover {
@@ -122,12 +123,12 @@ const fullInfo = computed(() => {
 .people {
   font-weight: normal;
   color: #ddd;
-  font-size: 11px;
+  font-size: 8px;
 }
 
 .status {
   display: inline-block;
-  font-size: 11px;
+  font-size: 8px;
   padding: 1px 6px;
   border-radius: 4px;
   margin: 4px 0;
@@ -164,6 +165,6 @@ const fullInfo = computed(() => {
 
 .time {
   color: #ccc;
-  font-size: 11px;
+  font-size: 8px;
 }
 </style>

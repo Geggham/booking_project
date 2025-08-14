@@ -81,42 +81,45 @@ function getTimeHHMM(dateString: string): string {
   return match ? match[1] : "";
 }
 
-const reservationsByTable = computed(() => {
-  return props.tables.map((table) => ({
+const reservationsByTable = computed(() =>
+  props.tables.map((table: Table) => ({
     tableId: table.id,
-    reservations: table.reservations.filter((res) => {
+    reservations: table.reservations.filter((res: Reservation) => {
       const resDate = new Date(res.seating_time).toISOString().split("T")[0];
       return resDate === props.selectedDate;
     }),
-  }));
-});
+  }))
+);
 
-const ordersByTable = computed(() => {
-  return props.tables.map((table) => ({
+const ordersByTable = computed(() =>
+  props.tables.map((table: Table) => ({
     tableId: table.id,
-    orders: table.orders.filter((ord) => {
+    orders: table.orders.filter((ord: Order) => {
       const ordDate = new Date(ord.start_time).toISOString().split("T")[0];
       return ordDate === props.selectedDate;
     }),
-  }));
-});
+  }))
+);
 
 const getReservationsForTableAtTime = (
   tableId: string,
   time: string
 ): Reservation[] => {
-  const tableRes = reservationsByTable.value.find((t) => t.tableId === tableId);
+  const tableRes = reservationsByTable.value.find(
+    (t: { tableId: string }) => t.tableId === tableId
+  );
   if (!tableRes) return [];
 
   const events = tableRes.reservations
-    .filter((res) => getTimeHHMM(res.seating_time) === time)
+    .filter((res: Reservation) => getTimeHHMM(res.seating_time) === time)
     .sort(
-      (a, b) =>
-        new Date(a.seating_time).getTime() - new Date(b.seating_time).getTime()
+      (a: Reservation, b: Reservation) =>
+        new Date(a.seating_time).getTime() -
+        new Date(b.seating_time).getTime()
     );
 
   let lastEnd: number | null = null;
-  events.forEach((res) => {
+  events.forEach((res: Reservation) => {
     const start = new Date(res.seating_time).getTime();
     if (lastEnd && start < lastEnd) {
       res.offset = 4;
@@ -129,19 +132,25 @@ const getReservationsForTableAtTime = (
   return events;
 };
 
-const getOrdersForTableAtTime = (tableId: string, time: string): Order[] => {
-  const tableOrd = ordersByTable.value.find((t) => t.tableId === tableId);
+const getOrdersForTableAtTime = (
+  tableId: string,
+  time: string
+): Order[] => {
+  const tableOrd = ordersByTable.value.find(
+    (t: { tableId: string }) => t.tableId === tableId
+  );
   if (!tableOrd) return [];
 
   const events = tableOrd.orders
-    .filter((ord) => getTimeHHMM(ord.start_time) === time)
+    .filter((ord: Order) => getTimeHHMM(ord.start_time) === time)
     .sort(
-      (a, b) =>
-        new Date(a.start_time).getTime() - new Date(b.start_time).getTime()
+      (a: Order, b: Order) =>
+        new Date(a.start_time).getTime() -
+        new Date(b.start_time).getTime()
     );
 
   let lastEnd: number | null = null;
-  events.forEach((ord) => {
+  events.forEach((ord: Order) => {
     const start = new Date(ord.start_time).getTime();
     if (lastEnd && start < lastEnd) {
       ord.offset = 4;
@@ -187,21 +196,21 @@ const calculateVerticalOffset = (
 
 <style scoped>
 .booking-table {
-  overflow-x: auto; /* горизонтальный скролл */
+  overflow-x: auto;
 }
 
 table {
   border-collapse: collapse;
   table-layout: fixed;
-  min-width: max-content; /* не сжимать колонки */
+  min-width: max-content;
 }
 
 th,
 td {
   border: 1px solid gray;
   padding: 0;
-  height: 40px; /* фиксированная высота */
-  width: 80px; /* фиксированная ширина */
+  height: 40px;
+  width: 80px;
   text-align: center;
   white-space: nowrap;
   text-overflow: ellipsis;
